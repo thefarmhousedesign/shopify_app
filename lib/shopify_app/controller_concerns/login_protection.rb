@@ -35,7 +35,7 @@ module ShopifyApp
         ShopifyAPI::Context.activate_session(current_shopify_session)
         yield
       ensure
-        ShopifyApp::Logger.info("Deactivating Session")
+        ShopifyApp::Logger.debug("Deactivating Session")
         ShopifyAPI::Context.deactivate_session
       end
     end
