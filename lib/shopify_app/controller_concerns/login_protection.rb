@@ -52,7 +52,7 @@ module ShopifyApp
         ShopifyApp::Logger.info("CookiesNotFound for current shopify session")
         nil
       rescue ShopifyAPI::Errors::InvalidJwtTokenError
-        ShopifyApp::Logger.info("Invalid Jwt token for current shopify session")
+        ShopifyApp::Logger.info("Invalid JWT token for current shopify session")
         nil
       end
     end
