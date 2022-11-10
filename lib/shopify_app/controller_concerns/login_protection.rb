@@ -16,7 +16,7 @@ module ShopifyApp
     ACCESS_TOKEN_REQUIRED_HEADER = "X-Shopify-API-Request-Failure-Unauthorized"
 
     def activate_shopify_session
-      ShopifyApp::Logger.debug("Activating Shopify Session")
+      ShopifyApp::Logger.debug("Activating Shopify session")
 
       if current_shopify_session.blank?
         signal_access_token_required
@@ -35,7 +35,7 @@ module ShopifyApp
         ShopifyAPI::Context.activate_session(current_shopify_session)
         yield
       ensure
-        ShopifyApp::Logger.debug("Deactivating Session")
+        ShopifyApp::Logger.debug("Deactivating session")
         ShopifyAPI::Context.deactivate_session
       end
     end
@@ -49,7 +49,7 @@ module ShopifyApp
           is_online: online_token_configured?,
         )
       rescue ShopifyAPI::Errors::CookieNotFoundError
-        ShopifyApp::Logger.info("CookiesNotFound for current shopify session")
+        ShopifyApp::Logger.info("CookiesNotFound for current Shopify session")
         nil
       rescue ShopifyAPI::Errors::InvalidJwtTokenError
         ShopifyApp::Logger.info("Invalid JWT token for current shopify session")
@@ -115,7 +115,7 @@ module ShopifyApp
     def redirect_to_login
       if request.xhr?
         add_top_level_redirection_headers(ignore_response_code: true)
-        ShopifyApp::Logger.debug("Login Redirect request is a xhr")
+        ShopifyApp::Logger.debug("Login redirect request is a XHR")
         head(:unauthorized)
       else
         if request.get?
@@ -135,7 +135,7 @@ module ShopifyApp
 
     def close_session
       clear_shopify_session
-      ShopifyApp::Logger.debug("Closing Session")
+      ShopifyApp::Logger.debug("Closing session")
       ShopifyApp::Logger.debug("Redirecting to #{login_url_with_optional_shop}")
       redirect_to(login_url_with_optional_shop)
     end
