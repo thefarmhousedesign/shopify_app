@@ -27,7 +27,7 @@ module ShopifyApp
     def destroy
       reset_session
       flash[:notice] = I18n.t(".logged_out")
-      ShopifyApp::Logger.debug("Session Destroyed")
+      ShopifyApp::Logger.debug("Session destroyed")
       ShopifyApp::Logger.debug("Redirecting to #{login_url_with_optional_shop}")
       redirect_to(login_url_with_optional_shop)
     end
@@ -57,7 +57,7 @@ module ShopifyApp
 
     def start_oauth
       callback_url = ShopifyApp.configuration.login_callback_url.gsub(%r{^/}, "")
-      ShopifyApp::Logger.debug("Starting OAuth with the following Callback URL: #{callback_url}")
+      ShopifyApp::Logger.debug("Starting OAuth with the following callback URL: #{callback_url}")
 
       auth_attributes = ShopifyAPI::Auth::Oauth.begin_auth(
         shop: sanitized_shop_name,
