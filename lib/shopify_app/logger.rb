@@ -31,7 +31,9 @@ module ShopifyApp
     end
 
     def self.enabled_for_log_level?(log_level)
-      raise(ShopifyApp::ConfigurationError, "Invalid Log Level - #{log_level}") unless LOG_LEVELS.keys.include?(log_level)
+      raise(ShopifyApp::ConfigurationError,
+        "Invalid Log Level - #{log_level}") unless LOG_LEVELS.keys.include?(log_level)
+
       LOG_LEVELS[log_level] >= LOG_LEVELS[ShopifyApp.configuration.log_level || DEFAULT_LOG_LEVEL]
     end
   end

@@ -16,7 +16,7 @@ module ShopifyApp
       data = request.raw_post
       unless hmac_valid?(data)
         ShopifyApp::Logger.debug("Webhook verification failed - HMAC invalid")
-        return head(:unauthorized)
+        head(:unauthorized)
       end
     end
 
