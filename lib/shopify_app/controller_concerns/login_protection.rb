@@ -20,7 +20,7 @@ module ShopifyApp
 
       if current_shopify_session.blank?
         signal_access_token_required
-        ShopifyApp::Logger.debug("No session found")
+        ShopifyApp::Logger.debug("No session found, redirecting to login")
         return redirect_to_login
       end
 
